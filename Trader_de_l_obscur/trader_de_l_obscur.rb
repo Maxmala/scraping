@@ -2,6 +2,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 
+
 page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/")) #on va diriger Nokogiri vers la page coin marketcap 
 
 name_list = page.css('a.currency-name-container') #On repere le selecteur du nom des coins et on stock dans l'objet page.css qu'on nomme name_list , on va faire appel à ça par la suite en utlisant le .text qui va chercher le texte de la balise , dans notre cas le nom du coin
@@ -26,3 +27,9 @@ for i in 0 .. (name_list.length-1)
 	tab[name_list[i].text] = [price_list[i]['data-usd']] 
 end
 
+
+
+#un petit timer pour que le code dort 1h et puis se relance
+puts tab
+puts "Next wawe in 1h"
+sleep(3600)
